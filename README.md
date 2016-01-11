@@ -2,6 +2,7 @@
 Base docker image for haproxy
 
 An haproxy docker image based on alpine linux, so it's very small at about 15 MiB.
+
 [![](https://badge.imagelayers.io/fingershock/haproxy-base:latest.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:latest)
 
 Haproxy is compiled with support for SSL, compression, and LUA in addition to all the normal haproxy load balancing goodness.
