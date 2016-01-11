@@ -16,7 +16,10 @@ RUN apk update && \
     echo "${HAPROXY_SHA256}  /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz" | sha256sum -c - && \
     tar -xzf /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz -C /usr/src && \
     rm /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz && \
-    make -C /usr/src/haproxy-${HAPROXY_VERSION} TARGET=linux2628 USE_PCRE=1 USE_PCRE_JIT=1 USE_OPENSSL=1 USE_ZLIB=1 USE_LUA=1 LUA_LIB=/usr/lib/lua5.3 LUA_INC=/usr/include/lua5.3 all install-bin && \
+    make -C /usr/src/haproxy-${HAPROXY_VERSION} TARGET=linux2628 USE_PCRE=1 USE_PCRE_JIT=1 USE_OPENSSL=1 USE_ZLIB=1 USE_TFO=1 USE_NS=1 USE_LUA=1 LUA_LIB=/usr/lib/lua5.3 LUA_INC=/usr/include/lua5.3 all install-bin && \
+    make -C /usr/src/haproxy-${HAPROXY_VERSION}/contrib/halog halog && \
+    install -d /usr/local/bin && \
+    install /usr/src/haproxy-${HAPROXY_VERSION}/contrib/halog/halog /usr/local/bin && \
     rm -rf /usr/src/haproxy-${HAPROXY_VERSION} && \
     mkdir -p /usr/local/etc/haproxy && \
     apk del --purge ${BUILD_DEPS} && \
