@@ -2,7 +2,7 @@ FROM alpine:latest
 
 MAINTAINER Bryan Talbot <bryan.talbot@ijji.com>
 
-# confd and haproxy versions to use
+# haproxy version to use
 ENV HAPROXY_MAJOR=1.6 \
     HAPROXY_VERSION=1.6.3 \
     HAPROXY_SHA256=fd06b45054cde2c69cb3322dfdd8a4bcfc46eb9d0c4b36d20d3ea19d84e338a7
