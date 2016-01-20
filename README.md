@@ -1,9 +1,19 @@
 # docker-haproxy-base
 Base docker image for [haproxy](http://www.haproxy.org/)
 
-An haproxy docker image based on alpine linux, so it's very small [![](https://badge.imagelayers.io/fingershock/haproxy-base:latest.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:latest)
+An haproxy docker image based on [alpine linux](http://www.alpinelinux.org/), so it's tiny.
 
 Haproxy is compiled with support for TLS/SSL, HTTP compression, and LUA in addition to all the normal haproxy load balancing goodness. A Linux kernel >= 3.7 is required for some options (e.g. TFO).
+
+
+It's on [docker-hub](https://hub.docker.com/r/fingershock/haproxy-base/) and [github](https://github.com/iJJi/docker-haproxy-base)
+
+## tags and links
+ * latest [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile) [![](https://badge.imagelayers.io/fingershock/haproxy-base:latest.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:latest)
+ * 1.6.3 [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/1.6.3/Dockerfile) [![](https://badge.imagelayers.io/fingershock/haproxy-base:1.6.3.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:1.6.3)
+
+
+## running
 
 To build the image, clone the repo and run
 ```sh
