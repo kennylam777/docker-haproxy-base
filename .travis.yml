@@ -15,7 +15,7 @@ before_script:
   - repo="fingershock/haproxy-base"
 
 script:
-  - docker build -t $repo .
+  - docker build -t $repo -f $DOCKERFILE .
   - docker run --rm $repo haproxy -vv
   - docker run --rm $repo halog -h
   - docker run --rm $repo openssl version
@@ -23,7 +23,7 @@ script:
 
 after_success:
   - for tag in $(docker run --rm $repo sh -c 'echo $HAPROXY_MAJOR $HAPROXY_VERSION'); do docker tag $repo $repo:$tag && docker push $repo:$tag; done
-  - [ "$DOCKERFILE" = "Dockerfile" ] && docker push $repo:latest
+  - if [ "$DOCKERFILE" = "Dockerfile" ]; then docker push $repo:latest; fi
 
 notifications:
   slack:
