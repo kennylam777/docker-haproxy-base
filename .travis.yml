@@ -15,8 +15,8 @@ script:
   - docker run --rm $repo socat -V
 
 after_success:
-  - docker tag $repo $repo:latest && docker push $repo:latest
-  - for ver in $(docker run --rm $repo sh -c 'echo $HAPROXY_MAJOR $HAPROXY_VERSION'); do docker tag $repo $repo:$tag && docker push $repo:tag; done
+  - set -x && docker tag $repo $repo:latest && docker push $repo:latest
+  - set -x && for ver in $(docker run --rm $repo sh -c 'echo $HAPROXY_MAJOR $HAPROXY_VERSION'); do docker tag $repo $repo:$tag && docker push $repo:tag; done
 
 notifications:
   slack:
