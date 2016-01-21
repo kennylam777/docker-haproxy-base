@@ -11,6 +11,8 @@ It's on [docker-hub](https://hub.docker.com/r/fingershock/haproxy-base/) and [gi
 
 ## tags and links
  * `latest`, `1.6`, `1.6.3` [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile) [![](https://badge.imagelayers.io/fingershock/haproxy-base:latest.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:latest) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=master)](https://travis-ci.org/iJJi/docker-haproxy-base)
+ * `1.5`, `1.5.15` [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile-1.5) [![](https://badge.imagelayers.io/fingershock/haproxy-base:1.5.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:1.5) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=master)](https://travis-ci.org/iJJi/docker-haproxy-base)
+ * `1.7`, `1.7-dev1` [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile-1.7) [![](https://badge.imagelayers.io/fingershock/haproxy-base:1.7.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:1.7) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=master)](https://travis-ci.org/iJJi/docker-haproxy-base)
 
 
 ## running
