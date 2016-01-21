@@ -10,7 +10,7 @@ before_script:
 script:
   - docker build -t $repo .
   - docker run --rm $repo haproxy -vv
-  - docker run --rm $repo halog -v
+  - docker run --rm $repo halog -h
   - docker run --rm $repo openssl version
   - docker run --rm $repo socat -V
 
