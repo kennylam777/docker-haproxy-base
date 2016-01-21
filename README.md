@@ -10,7 +10,7 @@ Additional binaries that are also installed and very useful for managing haproxy
 It's on [docker-hub](https://hub.docker.com/r/fingershock/haproxy-base/) and [github](https://github.com/iJJi/docker-haproxy-base)
 
 ## tags and links
- * `latest`, `1.6`, `1.6.3` Current stable release [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile) [![](https://badge.imagelayers.io/fingershock/haproxy-base:latest.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:latest) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=master)](https://travis-ci.org/iJJi/docker-haproxy-base)
+ * `latest`, `1.6`, `1.6.3` Current stable release [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile-1.6) [![](https://badge.imagelayers.io/fingershock/haproxy-base:1.6.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:1.6) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=master)](https://travis-ci.org/iJJi/docker-haproxy-base)
  * `1.5`, `1.5.15` Previous stable release [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile-1.5) [![](https://badge.imagelayers.io/fingershock/haproxy-base:1.5.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:1.5) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=master)](https://travis-ci.org/iJJi/docker-haproxy-base)
  * `1.7`, `1.7-dev1` Development pre-release [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile-1.7) [![](https://badge.imagelayers.io/fingershock/haproxy-base:1.7.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:1.7) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=master)](https://travis-ci.org/iJJi/docker-haproxy-base)
 
@@ -19,7 +19,7 @@ It's on [docker-hub](https://hub.docker.com/r/fingershock/haproxy-base/) and [gi
 
 To build the image, clone the repo and run
 ```sh
-docker build -t fingershock/haproxy-base .
+docker build -t fingershock/haproxy-base -f Dockerfile-1.6 .
 ```
 
 The image is basic and includes no [haproxy configuration](https://cbonte.github.io/haproxy-dconv/configuration-1.6.html) file so to be useful either build a new image with this one as a base and include whatever haproxy configuration is needed, or bind-mount the haproxy configuration file or /usr/local/etc/haproxy configuration directory.

@@ -4,7 +4,7 @@ services:
   - docker
 
 env:
-  - DOCKERFILE=Dockerfile
+  - DOCKERFILE=Dockerfile-1.6
   - DOCKERFILE=Dockerfile-1.5
   - DOCKERFILE=Dockerfile-1.7
 
@@ -23,7 +23,7 @@ script:
 
 after_success:
   - for tag in $(docker run --rm $repo sh -c 'echo $HAPROXY_MAJOR $HAPROXY_VERSION'); do docker tag $repo $repo:$tag && docker push $repo:$tag; done
-  - if [ "$DOCKERFILE" = "Dockerfile" ]; then docker push $repo:latest; fi
+  - if [ "$DOCKERFILE" = "Dockerfile-1.6" ]; then docker push $repo:latest; fi
 
 notifications:
   slack:
