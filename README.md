@@ -5,6 +5,7 @@ An haproxy docker image based on [alpine linux](http://www.alpinelinux.org/), so
 
 Haproxy is compiled with support for TLS/SSL, HTTP compression, and LUA in addition to all the normal haproxy load balancing goodness. A Linux kernel >= 3.7 is required for some options (e.g. TFO).
 
+Additional binaries that are also installed and very useful for managing haproxy include: `halog`, `openssl`, `socat`, `haproxy-systemd-wrapper`
 
 It's on [docker-hub](https://hub.docker.com/r/fingershock/haproxy-base/) and [github](https://github.com/iJJi/docker-haproxy-base)
 
