@@ -10,8 +10,7 @@ Additional binaries that are also installed and very useful for managing haproxy
 It's on [docker-hub](https://hub.docker.com/r/fingershock/haproxy-base/) and [github](https://github.com/iJJi/docker-haproxy-base)
 
 ## tags and links
- * `latest` [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile) [![](https://badge.imagelayers.io/fingershock/haproxy-base:latest.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:latest) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=master)](https://travis-ci.org/iJJi/docker-haproxy-base)
- * `1.6.3` [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/1.6.3/Dockerfile) [![](https://badge.imagelayers.io/fingershock/haproxy-base:1.6.3.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:1.6.3) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=1.6.3)](https://travis-ci.org/iJJi/docker-haproxy-base)
+ * `latest`, `1.6`, `1.6.3` [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile) [![](https://badge.imagelayers.io/fingershock/haproxy-base:latest.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:latest) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=master)](https://travis-ci.org/iJJi/docker-haproxy-base)
 
 
 ## running

@@ -1,13 +1,23 @@
-sudo: required
 services:
-- docker
+  - docker
+
 before_install:
-- docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+
+before_script:
+  - repo="fingershock/haproxy-base"
+
 script:
-- docker build -t fingershock/haproxy-base:${TRAVIS_BRANCH/master/latest} .
-- docker run --rm fingershock/haproxy-base:${TRAVIS_BRANCH/master/latest} haproxy -vv
+  - docker build -t $repo .
+  - docker run --rm $repo haproxy -vv
+  - docker run --rm $repo halog -v
+  - docker run --rm $repo openssl version
+  - docker run --rm $repo socat -V
+
 after_success:
-- docker push     fingershock/haproxy-base:${TRAVIS_BRANCH/master/latest}
+  - docker tag $repo $repo:latest && docker push $repo:latest
+  - for ver in $(docker run --rm $repo sh -c 'echo $HAPROXY_MAJOR $HAPROXY_VERSION'); do docker tag $repo $repo:$tag && docker push $repo:tag; done
+
 notifications:
   slack:
     secure: c9AMF/gTzFcXSl8qip5rkS0CE6EHJb7romu0RVi9YmcC8QlWWC8iV0Bf7TKXWg7Q0VqZ32zfYRMQxXEdYKpbseJ/zFnHPEj3p4cO+H8tKvQc/C3IhShVGN6DP4dlHShdnoZwndu50n2ZZD3ZpIvhGRmUqzIqTF4UYNpX4EYj2o9/2kEraOrT9fgTWM89VssyzuXLHC+pNMV399yBGEdioOcGU3I0q1W6yBGVZ+Po83i6hQwNDIRThWFcDVI+IooKqp304cnlg8MTPe9dcpNZkjQEqxohxrjgl04foDa76+MAnQ5lBx96bdtLh+LnmMfGqbA/JOE8Cm8Rl+PjpLkQhFzk0vyY4PbZBJp7uo4AtrEphjzgzetDbXAN1SSZW4HTYY2WLno9CEPJH4HJiLyASqjHY8SW69N/vdOeAzyR2gizTiYahvhGUo/8Cx2Iy91rlcPEgIYqtqtdWSlKFKD3EiiVrCyhQUauJvrkJfnul5Kzexz3zFSc5N9vGMMqarVErQnOuylMxcBDZ6QzK6ADoGlVvE8T2YnjZSUPZUceYwsLS2izGj9LElQ4CqXu+2g2KsxFh3Cxr6ez1Rx7+gYTsDEYQ3U0Uiil1qYrJlgEuXUxQTPsXlbmWZNoPAuqi98RZ6cejMm6IycmTt9S32Yh//nVODEUu7Dp+C5RlcZZRcY=
