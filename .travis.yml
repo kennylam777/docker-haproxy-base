@@ -1,11 +1,15 @@
+branches:
+  only:
+    - master
+
 language: bash
 
 services:
   - docker
 
 env:
-  - DOCKERFILE=Dockerfile-1.6
   - DOCKERFILE=Dockerfile-1.5
+  - DOCKERFILE=Dockerfile-1.6
   - DOCKERFILE=Dockerfile-1.7
 
 before_install:
