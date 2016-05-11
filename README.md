@@ -33,3 +33,4 @@ To run with configuration bind-mounted from a directory and get logs from the co
 ```sh
 docker run -it --rm -v /var/log:/var/log -v /my/config:/usr/local/etc/haproxy:ro  fingershock/haproxy-base haproxy -f /usr/local/etc/haproxy/haproxy.cfg -c
 ```
+
