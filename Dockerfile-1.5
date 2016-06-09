@@ -11,7 +11,7 @@ ENV HAPROXY_MAJOR=1.5 \
 RUN set -x && \
     apk update && \
     BUILD_DEPS="gcc libc-dev pcre-dev linux-headers openssl-dev make" && \
-    apk add ${BUILD_DEPS} socat pcre ca-certificates wget && \
+    apk add ${BUILD_DEPS} socat pcre ca-certificates openssl wget && \
     mkdir -p /usr/src && \
     wget --no-verbose -O /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz http://www.haproxy.org/download/${HAPROXY_MAJOR}/src/haproxy-${HAPROXY_VERSION}.tar.gz  && \
     echo "${HAPROXY_SHA256}  /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz" | sha256sum -c - && \
