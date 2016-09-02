@@ -3,6 +3,8 @@ Base docker image for [haproxy](http://www.haproxy.org/)
 
 An haproxy docker image based on [alpine linux](http://www.alpinelinux.org/), so it's tiny.
 
+[![](https://images.microbadger.com/badges/image/fingershock/haproxy-base.svg)](http://microbadger.com/images/fingershock/haproxy-base "Get your own image badge on microbadger.com")
+
 Haproxy is compiled with support for TLS/SSL, HTTP compression, and LUA in addition to all the normal haproxy load balancing goodness. A Linux kernel >= 3.7 is required for some options (e.g. TFO).
 
 Additional binaries that are also installed and very useful for managing haproxy include: `halog`, `openssl`, `socat`, `haproxy-systemd-wrapper`
@@ -10,9 +12,9 @@ Additional binaries that are also installed and very useful for managing haproxy
 It's on [docker-hub](https://hub.docker.com/r/fingershock/haproxy-base/) and [github](https://github.com/iJJi/docker-haproxy-base)
 
 ## tags and links
- * `latest`, `1.6`, `1.6.9` Current stable release [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile-1.6) [![](https://badge.imagelayers.io/fingershock/haproxy-base:1.6.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:1.6) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=master)](https://travis-ci.org/iJJi/docker-haproxy-base)
- * `1.5`, `1.5.18` Previous stable release [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile-1.5) [![](https://badge.imagelayers.io/fingershock/haproxy-base:1.5.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:1.5) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=master)](https://travis-ci.org/iJJi/docker-haproxy-base)
- * `1.7`, `1.7-dev4` Development pre-release [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile-1.7) [![](https://badge.imagelayers.io/fingershock/haproxy-base:1.7.svg)](https://imagelayers.io/?images=fingershock/haproxy-base:1.7) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=master)](https://travis-ci.org/iJJi/docker-haproxy-base)
+ * `latest`, `1.6`, `1.6.9` Current stable release [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile-1.6) [![](https://badge-imagelayers.iron.io/fingershock/haproxy-base:1.6.svg)](https://imagelayers.iron.io/?images=fingershock/haproxy-base:1.6) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=master)](https://travis-ci.org/iJJi/docker-haproxy-base)
+ * `1.5`, `1.5.18` Previous stable release [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile-1.5) [![](https://badge-imagelayers.iron.io/fingershock/haproxy-base:1.5.svg)](https://imagelayers.iron.io/?images=fingershock/haproxy-base:1.5) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=master)](https://travis-ci.org/iJJi/docker-haproxy-base)
+ * `1.7`, `1.7-dev4` Development pre-release [(Dockerfile)](https://github.com/iJJi/docker-haproxy-base/blob/master/Dockerfile-1.7) [![](https://badge-imagelayers.iron.io/fingershock/haproxy-base:1.7.svg)](https://imagelayers.iron.io/?images=fingershock/haproxy-base:1.7) [![Build Status](https://travis-ci.org/iJJi/docker-haproxy-base.svg?branch=master)](https://travis-ci.org/iJJi/docker-haproxy-base)
 
 
 ## running

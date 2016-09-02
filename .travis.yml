@@ -15,19 +15,8 @@ env:
 before_install:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
-before_script:
-  - repo="fingershock/haproxy-base"
-
 script:
-  - docker build -t $repo -f $DOCKERFILE .
-  - docker run --rm $repo haproxy -vv
-  - docker run --rm $repo halog -h
-  - docker run --rm $repo openssl version
-  - docker run --rm $repo socat -V
-
-after_success:
-  - for tag in $(docker run --rm $repo sh -c 'echo $HAPROXY_MAJOR $HAPROXY_VERSION'); do docker tag $repo $repo:$tag && docker push $repo:$tag; done
-  - if [ "$DOCKERFILE" = "Dockerfile-1.6" ]; then docker push $repo:latest; fi
+  - ./build.sh -p $DOCKERFILE
 
 notifications:
   slack:
