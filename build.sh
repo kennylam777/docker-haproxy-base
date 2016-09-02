@@ -62,5 +62,5 @@ for d in $dockerfiles; do
     build $d
     test $d
     tag $d
-    [[ $push ]] && echo push $d
+    [[ $push ]] && push $d
 done
