@@ -40,7 +40,7 @@ push()
     for tag in `docker run --rm ${REPO} sh -c 'echo $HAPROXY_MAJOR $HAPROXY_VERSION'`; do
         docker push ${REPO}:$tag
     done
-    if [ "$dockerfile" = "Dockerfile-1.6" ]; then
+    if [ "$dockerfile" = "Dockerfile-1.7" ]; then
         docker push ${REPO}:latest
     fi
 }
