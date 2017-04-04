@@ -1,0 +1,42 @@
+FROM alpine:3.5
+
+MAINTAINER Bryan Talbot <bryan.talbot@ijji.com>
+
+# haproxy version to use
+ENV HAPROXY_MAJOR=1.8 \
+    HAPROXY_VERSION=1.8-dev1 \
+    HAPROXY_SHA256=4aead2a059ecab9afbe49e80ef6f49940c3ca488d0aeb4fda613fcf2058c6fb6
+
+# Build-time metadata as defined at http://label-schema.org
+ARG BUILD_DATE
+ARG VCS_REF
+LABEL org.label-schema.build-date=$BUILD_DATE \
+      org.label-schema.docker.dockerfile="Dockerfile-$HAPROXY_MAJOR" \
+      org.label-schema.license="MIT" \
+      org.label-schema.name="Docker haproxy base" \
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-type="git" \
+      org.label-schema.vcs-url="https://github.com/iJJi/docker-haproxy-base" \
+      org.label-schema.vendor="Ijji, inc." \
+      org.label-schema.version=$HAPROXY_VERSION
+
+# download, compile and install haproxy
+RUN set -x && \
+    apk update && \
+    BUILD_DEPS="gcc libc-dev pcre-dev linux-headers openssl-dev lua5.3-dev make" && \
+    apk add ${BUILD_DEPS} socat pcre lua5.3 ca-certificates openssl wget && \
+    mkdir -p /usr/src && \
+    wget --no-verbose -O /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz http://www.haproxy.org/download/${HAPROXY_MAJOR}/src/devel/haproxy-${HAPROXY_VERSION}.tar.gz  && \
+    echo "${HAPROXY_SHA256}  /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz" | sha256sum -c - && \
+    tar -xzf /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz -C /usr/src && \
+    rm /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz && \
+    make -C /usr/src/haproxy-${HAPROXY_VERSION} TARGET=linux2628 USE_PCRE=1 USE_PCRE_JIT=1 USE_OPENSSL=1 USE_ZLIB=1 USE_TFO=1 USE_NS=1 USE_LUA=1 LUA_LIB=/usr/lib/lua5.3 LUA_INC=/usr/include/lua5.3 all install-bin && \
+    make -C /usr/src/haproxy-${HAPROXY_VERSION}/contrib/halog halog && \
+    install -d /usr/local/bin && \
+    install /usr/src/haproxy-${HAPROXY_VERSION}/contrib/halog/halog /usr/local/bin && \
+    rm -rf /usr/src/haproxy-${HAPROXY_VERSION} && \
+    mkdir -p /usr/local/etc/haproxy && \
+    apk del --purge ${BUILD_DEPS} && \
+    rm -rf /var/cache/apk/*
+
+VOLUME ["/usr/local/etc/haproxy", "/dev/log"]
