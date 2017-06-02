@@ -1,11 +1,11 @@
-FROM alpine:3.5
+FROM alpine:3.6
 
 MAINTAINER Bryan Talbot <bryan.talbot@ijji.com>
 
 # haproxy version to use
 ENV HAPROXY_MAJOR=1.8 \
-    HAPROXY_VERSION=1.8-dev1 \
-    HAPROXY_SHA256=4aead2a059ecab9afbe49e80ef6f49940c3ca488d0aeb4fda613fcf2058c6fb6
+    HAPROXY_VERSION=1.8-dev2 \
+    HAPROXY_SHA256=45f42107e8730fc7bf324523d148d67aae6a65f0d4a4b981273d3dcefd6de2e1
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
