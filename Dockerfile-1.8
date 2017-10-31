@@ -4,8 +4,8 @@ MAINTAINER Bryan Talbot <bryan.talbot@ijji.com>
 
 # haproxy version to use
 ENV HAPROXY_MAJOR=1.8 \
-    HAPROXY_VERSION=1.8-dev3 \
-    HAPROXY_SHA256=8f6856b4ff03408af702fbdb3b9374c3e718b8479cd999445a33d4f2c48f7711
+    HAPROXY_VERSION=1.8-rc1 \
+    HAPROXY_SHA256=372a4a3aa38b3e411745342c9108579726d3fd1c2b737828b1cdce59c66f7cbe
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
@@ -26,7 +26,7 @@ RUN set -x && \
     BUILD_DEPS="gcc libc-dev pcre-dev linux-headers openssl-dev lua5.3-dev make" && \
     apk add ${BUILD_DEPS} socat pcre lua5.3 ca-certificates openssl wget && \
     mkdir -p /usr/src && \
-    wget -O /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz http://www.haproxy.org/download/${HAPROXY_MAJOR}/src/devel/haproxy-${HAPROXY_VERSION}.tar.gz  && \
+    wget -O /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz http://www.haproxy.org/download/${HAPROXY_MAJOR}/src/haproxy-${HAPROXY_VERSION}.tar.gz  && \
     echo "${HAPROXY_SHA256}  /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz" | sha256sum -c - && \
     tar -xzf /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz -C /usr/src && \
     rm /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz && \
