@@ -1,0 +1,53 @@
+FROM alpine:3.6 as builder
+
+MAINTAINER Bryan Talbot <bryan.talbot@ijji.com>
+
+# haproxy version to use
+ENV HAPROXY_MAJOR=1.8 \
+    HAPROXY_VERSION=1.8-rc4 \
+    HAPROXY_SHA256=c5b3da764eeacdaa3fd8ed9e922ab9f335ab63e5849c579f27b30212981971be
+
+# openssl version to use
+ENV OPENSSL_VERSION=1.1.0g \
+    OPENSSL_SHA256=de4d501267da39310905cb6dc8c6121f7a2cad45a7707f76df828fe1b85073af
+	
+# Build-time metadata as defined at http://label-schema.org
+ARG BUILD_DATE
+ARG VCS_REF
+LABEL org.label-schema.build-date=$BUILD_DATE \
+      org.label-schema.docker.dockerfile="Dockerfile-$HAPROXY_MAJOR" \
+      org.label-schema.license="MIT" \
+      org.label-schema.name="Docker haproxy base" \
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-type="git" \
+      org.label-schema.vcs-url="https://github.com/iJJi/docker-haproxy-base" \
+      org.label-schema.vendor="Ijji, inc." \
+      org.label-schema.version=$HAPROXY_VERSION
+
+# download, compile and install haproxy
+RUN set -x && \
+    apk update && \
+    BUILD_DEPS="gcc libc-dev pcre-dev linux-headers lua5.3-dev make perl zlib-dev wget" && \
+    apk add ${BUILD_DEPS} socat pcre lua5.3 ca-certificates && \
+    mkdir -p /usr/src && \
+	wget -O /usr/src/openssl-${OPENSSL_VERSION}.tar.gz https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz  && \
+	echo "${OPENSSL_SHA256}  /usr/src/openssl-${OPENSSL_VERSION}.tar.gz" | sha256sum -c - && \
+	tar -xzf /usr/src/openssl-${OPENSSL_VERSION}.tar.gz -C /usr/src && \
+	rm -rf /usr/src/openssl-${OPENSSL_VERSION}.tar.gz && \
+	make -C /usr/src/openssl-${OPENSSL_VERSION} all install_dev install_engines &&\
+    wget -O /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz http://www.haproxy.org/download/${HAPROXY_MAJOR}/src/haproxy-${HAPROXY_VERSION}.tar.gz  && \
+    echo "${HAPROXY_SHA256}  /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz" | sha256sum -c - && \
+    tar -xzf /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz -C /usr/src && \
+    rm /usr/src/haproxy-${HAPROXY_VERSION}.tar.gz && \
+    make -C /usr/src/haproxy-${HAPROXY_VERSION} TARGET=linux2628 USE_PCRE=1 USE_PCRE_JIT=1 USE_OPENSSL=1 USE_ZLIB=1 USE_TFO=1 USE_NS=1 USE_LUA=1 LUA_LIB=/usr/lib/lua5.3 LUA_INC=/usr/include/lua5.3 all install-bin && \
+    make -C /usr/src/haproxy-${HAPROXY_VERSION}/contrib/halog halog && \
+    install -d /usr/local/bin && \
+    install /usr/src/haproxy-${HAPROXY_VERSION}/contrib/halog/halog /usr/local/bin && \
+    rm -rf /usr/src/haproxy-${HAPROXY_VERSION} && \
+	make -C /usr/src/openssl-${OPENSSL_VERSION} uninstall_dev  && \
+	rm -rf /usr/src/openssl-${OPENSSL_VERSION}  && \
+    mkdir -p /usr/local/etc/haproxy && \
+    apk del --purge ${BUILD_DEPS} && \
+    rm -rf /var/cache/apk/*
+
+VOLUME ["/usr/local/etc/haproxy", "/dev/log"]
